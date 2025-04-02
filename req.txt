@@ -1,3 +1,6 @@
-Pyrogram==2.0.106
-TgCrypto==1.2.5
-python-decouple
+colorama>=0.4.6
+matplotlib>=3.10.1
+prophet>=1.1.6
+pyrogram>=2.0.106
+python-decouple>=3.8
+tgcrypto>=1.2.5
