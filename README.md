@@ -12,3 +12,9 @@ Download tiktok videos
 # Install
 1. `pip install -r req.txt`
 2. Get your pyrogram [session string](https://docs.pyrogram.org/api/methods/export_session_string)
+
+If you use [uv](https://docs.astral.sh/uv/guides/install-python/):
+Run `uv_run.sh`
+
+If python:
+Run `run.sh`
