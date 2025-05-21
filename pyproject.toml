@@ -1,9 +1,9 @@
 [project]
 name = "tiktok-userbot"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.1.2"
+description = "Userbot for download tiktoks"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.11"
 dependencies = [
     "colorama>=0.4.6",
     "matplotlib>=3.10.1",
