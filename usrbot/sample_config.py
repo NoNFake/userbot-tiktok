@@ -49,7 +49,7 @@ class Config:
         5, 10
         )
     
-    link_trigger = ".tiktok.com/"
+    link_trigger = ".tiktok.com/|instagram.com/reel|spotify.com/track/"
 
 
     
