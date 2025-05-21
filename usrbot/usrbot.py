@@ -9,6 +9,9 @@ from pyrogram import Client, filters, __version__ as pyro_version
 from pyrogram.enums import ParseMode
 
 
+# import schedule # https://schedule.readthedocs.io/en/stable/
+# import time
+import asyncio
 
 config = Config()
 log.info(f"Im runnioing from : {__name__} ... Done") 
@@ -37,24 +40,27 @@ class UsrBot(Client):
             name,
             session_string=sessio_string,
 
-            workers=8,
             # parse_mode=ParseMode.MARKDOWN,
 
             plugins=dict(root=f"{name}/plugins"),
-            sleep_threshold=180
+            sleep_threshold=10,
+            max_concurrent_transmissions=5
         )
 
     
     async def start(self):
         await super().start()
+        # schedule.every(1).minutes.do(await self.restart())
 
         print("Start from {self.__class__.__name__} ... Done")
         usr_bot_me = await self.get_me()
+
 
         print("\n\n")
         print(" ############## START ##############")
         print(f"Pyrogram version: {pyro_version}")
         print(f"Bot started. User username: {usr_bot_me.username}")
+
 
  
     async def stop(self):
@@ -63,10 +69,16 @@ class UsrBot(Client):
         print(" ############## STOP ##############")
         print("Bot stopped. Bye.")
 
+
+
     @classmethod
-    async def restart(self, block: bool = True):
+    async def restart(self):
         print(f"Restart from {self.__class__.__name__} ... Done")
-        await super().restart(block=block)
+        
+        await super().stop()
+        await asyncio.sleep(2)
+
+        await self.start()
 
 
 

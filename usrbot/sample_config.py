@@ -49,7 +49,7 @@ class Config:
         5, 10
         )
     
-    link_trigger = "https://vm.tiktok.com/"
+    link_trigger = ".tiktok.com/"
 
 
     

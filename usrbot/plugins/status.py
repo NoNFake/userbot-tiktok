@@ -10,13 +10,16 @@ from datetime import datetime, timedelta
 import logging
 import io
 from collections import defaultdict
+from ..sample_config import Config
 
 log = logging.getLogger(__name__)
+
 
 @UsrBot.on_message(filters.command("status", prefixes=".") & (filters.me | filters.private))
 async def status(client, message):
 
     argv = message.text.split()
+    link_trigger = Config.link_trigger
 
     # log.info(f"argv: {argv}")
     if len(argv) <= 1:
@@ -43,7 +46,7 @@ async def status(client, message):
             
             
         ):
-            if msg.text and "https://vm.tiktok.com/" in msg.text:
+            if msg.text and link_trigger in msg.text:
                 dates.append(msg.date)
                 # links.append(msg.text.split(" ")[-1])  # or any other metric you want
         

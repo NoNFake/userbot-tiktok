@@ -16,3 +16,4 @@ wheels/
 *.txt
 statust_test.py
 uv.lock
+test.py
