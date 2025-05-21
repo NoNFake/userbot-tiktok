@@ -1,0 +1,16 @@
+#!/bin/bash
+
+
+default='uv_run.sh' # uv_run.sh or run.sh
+
+# ids=`ps aux | grep $default | awk '{print $2}'`
+ids=`ps -C python3 -o pid | awk '{if(NR>1)print}'`
+
+for i in $ids
+do  
+    echo $i
+    kill -9 $i
+done
+
+bash $default
+
