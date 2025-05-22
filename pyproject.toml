@@ -9,6 +9,7 @@ dependencies = [
     "matplotlib>=3.10.1",
     "pyrogram>=2.0.106",
     "python-decouple>=3.8",
+    "requests>=2.32.3",
     "tgcrypto>=1.2.5",
     "uvloop>=0.21.0",
 ]

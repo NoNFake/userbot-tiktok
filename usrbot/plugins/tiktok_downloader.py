@@ -5,6 +5,8 @@ from pyrogram.errors import (
     BotResponseTimeout)
 from ..sample_config import Config, MessagesTag
 import logging
+import asyncio
+
 log = logging.getLogger(__name__)
 
 link_trigger = Config.link_trigger
@@ -43,23 +45,50 @@ async def tiktok_handler(client, message):
                 log.info("No results found")
                 return
             
+           
+           
+            if bot_res.results == []:
+                for i in range(3):
+                    print(i)
+                    await asyncio.sleep(2)
+                    bot_res = await client.get_inline_bot_results(
+                        "tikloadtokbot",
+                        message.text
+                    )
+                    print(f"""
+                    {message.text:}
+
+                    {bot_res:}
+
+                    """)
+                    if bot_res.results != []:
+                        await client.send_inline_bot_result(
+                            message.chat.id,
+                            bot_res.query_id,
+                            bot_res.results[0].id,
+                            # bot_res.results[0].id,
+                        )
+
             await client.send_inline_bot_result(
                 message.chat.id,
                 bot_res.query_id,
                 bot_res.results[0].id,
+                # bot_res.results[0].id,
             )
 
             return bot_res.results[0].id
+
         
 
-        # except BotResponseTimeout:
-        #     await message.reply_text(MessagesTag.msg_fail)
-        #     log.info("Bot response timeout")
-        #     return
+        except BotResponseTimeout:
+            await message.reply_text(MessagesTag.msg_fail)
+            log.info("Bot response timeout")
+            return
         except Exception as e:
             await message.reply_text(MessagesTag.msg_fail)
             log.error(f"Error: {e}")
             return
     
 
-    log.info(f"bot_res: {await tt_down(client, message)}")
+    bot_res = await tt_down(client, message)
+    log.info(f"bot_res: {bot_res}")
