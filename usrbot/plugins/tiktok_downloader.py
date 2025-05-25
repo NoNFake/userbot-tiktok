@@ -45,29 +45,6 @@ async def tiktok_handler(client, message):
                 log.info("No results found")
                 return
             
-           
-           
-            if bot_res.results == []:
-                for i in range(3):
-                    print(i)
-                    await asyncio.sleep(2)
-                    bot_res = await client.get_inline_bot_results(
-                        "tikloadtokbot",
-                        message.text
-                    )
-                    print(f"""
-                    {message.text:}
-
-                    {bot_res:}
-
-                    """)
-                    if bot_res.results != []:
-                        await client.send_inline_bot_result(
-                            message.chat.id,
-                            bot_res.query_id,
-                            bot_res.results[0].id,
-                            # bot_res.results[0].id,
-                        )
 
             await client.send_inline_bot_result(
                 message.chat.id,
@@ -76,7 +53,6 @@ async def tiktok_handler(client, message):
                 # bot_res.results[0].id,
             )
 
-            return bot_res.results[0].id
 
         
 

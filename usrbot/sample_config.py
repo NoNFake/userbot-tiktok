@@ -7,6 +7,7 @@ from typing import Optional
 import random as rnd
 from enum import Enum
 
+import json
 
 @dataclass
 class Config:
@@ -22,7 +23,6 @@ class Config:
     tiktok_friends_id = base_dir / "tiktok_friends_id.txt"
 
     tiktok_replyes = base_dir / "tiktok_replies.txt"
-
 
     for files in [
         chat_friends_id,
@@ -75,7 +75,21 @@ class Config:
                     f.readlines()
                 )
             )
+        
+    @classmethod
+    def gen_cats(self):
+        eye = lambda: rnd.choice(['o', 'O', '>', '<', '*', '-', '∨', '~'])
+        item = lambda: rnd.choice(['*', '?', '$', '!'])
 
+        return f"""
+ /\_/\  
+( {eye()}.{eye()} ) 
+> {item()} <
+""" 
+ 
+            
+
+    cat_emotion = lambda: rnd.choice(Config.load_cat_emotion())
     tiktok_reply = lambda: rnd.choice(Config.load_tiktok_replyes())
 
 class MessagesTag:
@@ -85,5 +99,5 @@ class MessagesTag:
 
 
     msg_search = f'{tiktok_tag}\nШукаю...'
-    msg_fail = f'{tiktok_tag}\n{Config.tiktok_reply()}'
+    msg_fail = f'''{tiktok_tag}\n```{Config.gen_cats()}{Config.tiktok_reply()}```'''
     
