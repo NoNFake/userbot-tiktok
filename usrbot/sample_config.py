@@ -89,7 +89,6 @@ class Config:
  
             
 
-    cat_emotion = lambda: rnd.choice(Config.load_cat_emotion())
     tiktok_reply = lambda: rnd.choice(Config.load_tiktok_replyes())
 
 class MessagesTag:
