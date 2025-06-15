@@ -49,7 +49,7 @@ class Config:
         5, 10
         )
     
-    link_trigger = r"((tiktok\.com|instagram\.com)/.+)"
+    link_trigger = r"((tiktok\.com|instagram\.com|spotify\.com)/.+)"
 
 
     
