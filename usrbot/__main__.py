@@ -1,5 +1,5 @@
-import uvloop
-uvloop.install()
+# import uvloop
+# uvloop.install()
 
 from .usrbot import UsrBot
 import logging
