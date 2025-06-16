@@ -1,6 +1,8 @@
 # uv run -m usrbot
 
-timer=3600 # 1 hour
+hour=3600 # 1 hour
+timer=$((hour*6))
+
 
 while true;do
     timeout $timer uv run -m usrbot
