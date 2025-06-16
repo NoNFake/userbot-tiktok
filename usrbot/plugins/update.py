@@ -30,6 +30,7 @@ async def update(client, message):
             os.system("bash uv_run.sh")
 
     except Exception as e:
+        pass
         # os.system("bash restart")
         # await message.reply_text(f"``` \n{Config.gen_cats()} Поки оновлень немає...```")
         # pass
