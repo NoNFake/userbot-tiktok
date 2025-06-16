@@ -24,17 +24,25 @@ async def update(client, message):
     update = ['bash', update_file]
 
     try:
-        get_update = subprocess.check_output(update, text=True)
+        result = subprocess.run(
+            ['bash', str(update_file)],
+            check=True,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT
+        )
+
+        get_update = result.stdout
+
         await message.reply_text(f"```Оновлення\n{Config.gen_cats()}\n{get_update}```")     
         if "Already up to date." not in get_update:
-            os.system("bash uv_run.sh")
-
-    except Exception as e:
-        pass
-        # os.system("bash restart")
-        # await message.reply_text(f"``` \n{Config.gen_cats()} Поки оновлень немає...```")
-        # pass
+            await message.reply_text("Перезавантаження...")
+            await restart(client, message)
+            await message.reply_text(f"```ЛОГ\n{Config.gen_cats()}\nВсе працює!...```")
     
-
-
+    except subprocess.CalledProcessError as e:
+        await message.reply_text(f"Update failed:\n```{e.get_update}```")
+    except Exception as e:
+        await message.reply_text(f"Unexpected error:\n```{str(e)}```")
+       
 
