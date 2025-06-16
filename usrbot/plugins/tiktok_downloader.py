@@ -57,11 +57,13 @@ async def tiktok_handler(client, message):
         
 
         except BotResponseTimeout:
-            await message.reply_text(MessagesTag.msg_fail)
+            # await message.reply_text(MessagesTag.msg_fail)
+            await message.reply_text(f'''{MessagesTag.tiktok_tag}\n```{Config.gen_cats()}{Config.tiktok_reply()}```''')
             log.info("Bot response timeout")
             return
         except Exception as e:
-            await message.reply_text(MessagesTag.msg_fail)
+            # await message.reply_text(MessagesTag.msg_fail)
+            await message.reply_text(f'''{MessagesTag.tiktok_tag}\n```{Config.gen_cats()}{Config.tiktok_reply()}```''')
             log.error(f"Error: {e}")
             return
     
