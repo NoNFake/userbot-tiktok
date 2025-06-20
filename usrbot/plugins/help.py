@@ -47,4 +47,4 @@ def loader():
 async def help(_, message):
     log.info("help command received")
 
-    await message.reply_text(loader())
+    await message.reply_text(f"```{loader()}```")
